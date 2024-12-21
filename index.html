@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Курс корейского языка</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #4CAF50;
+      padding: 10px;
+      color: white;
+      text-align: center;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .language-selector {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .language-selector select {
+      padding: 10px;
+      font-size: 16px;
+    }
+    .lesson {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+    }
+    .lesson img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    .lesson h3 {
+      color: #4CAF50;
+    }
+    .lesson p {
+      font-size: 16px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Курс корейского языка</h1>
+  </header>
+
+  <div class="container">
+    <div class="language-selector">
+      <label for="language-select">Выберите язык:</label>
+      <select id="language-select" onchange="changeLanguage()">
+        <option value="en">English</option>
+        <option value="uz">O'zbekcha</option>
+        <option value="ru">Русский</option>
+        <option value="ne">नेपाली</option>
+        <option value="bn">বাংলা</option>
+        <option value="th">ไทย</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="si">සිංහල</option>
+      </select>
+    </div>
+
+    <div id="lessons">
+      <!-- Уроки будут добавляться через JavaScript -->
+    </div>
+
+    <div class="btn-container">
+      <a href="#" class="btn">
+        Detailed Training,
+        Tafsilotli o'quv,
+        विस्तृत तालिम,
+        Подробное обучение,
+        বিস্তারিত প্রশিক্ষণ,
+        การฝึกอบรมอย่างละเอียด,
+        Đào tạo chi tiết,
+        විස්තාරිත පුහුණු කිරීම
+    </a>
+    </div>
+  </div>
+
+  <script>
+    const lessons = {
+        en: [
+  { title: "Lesson 1: Introduction", description: "Learn the basics of the Korean language, including essential greetings and phrases." },
+  { title: "Lesson 2: Hangul - The Korean Alphabet", description: "Understand the structure and sounds of Hangul, the Korean writing system." },
+  { title: "Lesson 3: Vowels and Consonants", description: "Learn the 10 basic vowels and 14 consonants of the Korean alphabet." },
+  { title: "Lesson 4: Writing Basic Syllables", description: "How to combine vowels and consonants to form basic Korean syllables." },
+  { title: "Lesson 5: Numbers in Korean", description: "Learn the two number systems in Korean: native and Sino-Korean numbers." },
+  { title: "Lesson 6: Basic Sentence Structure", description: "Understand the subject-object-verb (SOV) sentence structure of Korean." },
+  { title: "Lesson 7: Common Greetings", description: "Master essential greetings and expressions used in everyday Korean conversations." },
+  { title: "Lesson 8: Introductions and Self-introduction", description: "Learn how to introduce yourself and ask others about their names and jobs." },
+  { title: "Lesson 9: Family and Relationships", description: "Learn the words and phrases for family members and common relationships." },
+  { title: "Lesson 10: Korean Culture and Customs", description: "Get familiar with important aspects of Korean culture, customs, and etiquette." },
+  { title: "Lesson 11: Korean Pronouns", description: "Learn how to use personal pronouns in Korean." },
+  { title: "Lesson 12: Verbs and Adjectives", description: "Understand how verbs and adjectives are conjugated in Korean." },
+  { title: "Lesson 13: Colors and Shapes", description: "Learn vocabulary related to colors and shapes in Korean." },
+  { title: "Lesson 14: Time and Dates", description: "Master telling time, days, months, and how to use dates in Korean." },
+  { title: "Lesson 15: Ordering Food and Drinks", description: "Learn the essential phrases to order food and drinks in a Korean restaurant." },
+  { title: "Lesson 16: Transportation and Directions", description: "Learn the vocabulary related to transportation and how to ask for directions." },
+  { title: "Lesson 17: Weather and Seasons", description: "Talk about the weather, seasons, and common weather-related expressions." },
+  { title: "Lesson 18: Shopping and Bargaining", description: "Learn how to shop and bargain in Korean markets." },
+  { title: "Lesson 19: Emergency Phrases", description: "Learn important phrases to use in emergencies." },
+  { title: "Lesson 20: Review and Practice", description: "A comprehensive review of all lessons and practice exercises." }
+]
+,
+uz: [
+  { title: "Dars 1: Kirish", description: "Koreys tilining asoslarini o'rganing, zarur salomlashish va iboralarni o'rganing." },
+  { title: "Dars 2: Hangul - Koreys Alifbosi", description: "Hangul tizimi va undagi tovushlarni tushuning." },
+  { title: "Dars 3: Unli va Undosh Harflar", description: "Koreys alifbosining 10 ta unli va 14 ta undosh harfini o'rganing." },
+  { title: "Dars 4: Asosiy Sillabalarni Yozish", description: "Unli va undosh harflarni birlashtirib asosiy koreys sillabalarini yozishni o'rganing." },
+  { title: "Dars 5: Koreys Raqamlari", description: "Koreys tilida ikkita raqam tizimi mavjud: mahalliy va sino-koreys raqamlari." },
+  { title: "Dars 6: Asosiy Gap Tuzilishi", description: "Koreys tilining sub'ekt-ob'ekt-fe'l (SOV) gap tuzilishini tushuning." },
+  { title: "Dars 7: Ommaviy Salomlashish", description: "Koreyscha kundalik suhbatlarda ishlatiladigan zarur salomlashish iboralarini o'rganing." },
+  { title: "Dars 8: Tanishtirish va O'zini Tanishtirish", description: "O'zingizni tanishtirish va boshqalarni ism va ish joyi haqida so'rashni o'rganing." },
+  { title: "Dars 9: Oila va Munosabatlar", description: "Koreys tilida oila a'zolarini va munosabatlarni ifodalovchi so'zlarni o'rganing." },
+  { title: "Dars 10: Koreys Madaniyati va An'analari", description: "Koreys madaniyati, an'analar va etiket bilan tanishing." },
+  { title: "Dars 11: Koreys O'rnilar", description: "Koreys tilida shaxsiy o'rnilarni ishlatishni o'rganing." },
+  { title: "Dars 12: Fe'llar va Sifatlar", description: "Koreys tilida fe'llar va sifatlarning qanday qo'llanishini tushuning." },
+  { title: "Dars 13: Ranglar va Shakllar", description: "Koreys tilida ranglar va shakllar haqida so'zlarni o'rganing." },
+  { title: "Dars 14: Vaqt va Sana", description: "Vaqt, kunlar, oylar va sanalarni koreys tilida ifodalashni o'rganing." },
+  { title: "Dars 15: Ovqat va Ichimliklar Buyurtma Qilish", description: "Koreys restorani va kafeida ovqat va ichimliklarni buyurtma qilish uchun zarur iboralarni o'rganing." },
+  { title: "Dars 16: Transport va Yo'nalishlar", description: "Transport vositalari va yo'nalishlar haqida so'zlarni o'rganing." },
+  { title: "Dars 17: Havo va Fasllar", description: "Havo holati, fasllar va havo bilan bog'liq iboralarni o'rganing." },
+  { title: "Dars 18: Savdo va Narxlar", description: "Koreys bozorlarida xarid qilish va narxlarni muzokara qilishni o'rganing." },
+  { title: "Dars 19: Favqulodda Vaziyatlar", description: "Favqulodda holatlar uchun kerakli iboralarni o'rganing." },
+  { title: "Dars 20: Ko'rib Chiqish va Mashq", description: "Barcha darslarning umumiy ko'rib chiqilishi va mashq qilinishi." }
+]
+,
+ru: [
+  { title: "Урок 1: Введение", description: "Изучение основ корейского языка, включая основные приветствия и фразы." },
+  { title: "Урок 2: Хангыль - Корейский алфавит", description: "Понимание структуры и звуков Хангыль, корейской системы письма." },
+  { title: "Урок 3: Гласные и согласные", description: "Изучение 10 основных гласных и 14 согласных корейского алфавита." },
+  { title: "Урок 4: Написание основных слогов", description: "Как сочетать гласные и согласные для создания основных корейских слогов." },
+  { title: "Урок 5: Числа на корейском", description: "Изучение двух систем чисел на корейском языке: родных и синокорейских чисел." },
+  { title: "Урок 6: Основная структура предложения", description: "Понимание структуры предложений в корейском языке (субъект-объект-глагол)." },
+  { title: "Урок 7: Обычные приветствия", description: "Освоение необходимых приветствий и фраз для повседневных разговоров на корейском." },
+  { title: "Урок 8: Знакомства и самопрезентация", description: "Как представить себя и спросить у других о их имени и профессии." },
+  { title: "Урок 9: Семья и отношения", description: "Изучение слов и фраз, связанных с членами семьи и отношениями." },
+  { title: "Урок 10: Корейская культура и обычаи", description: "Знакомство с важными аспектами корейской культуры, обычаев и этикета." },
+  { title: "Урок 11: Местоимения", description: "Как использовать личные местоимения в корейском языке." },
+  { title: "Урок 12: Глаголы и прилагательные", description: "Понимание того, как спрягать глаголы и прилагательные в корейском языке." },
+  { title: "Урок 13: Цвета и формы", description: "Изучение словарного запаса, связанного с цветами и формами." },
+  { title: "Урок 14: Время и даты", description: "Как говорить о времени, днях недели, месяцах и датах на корейском." },
+  { title: "Урок 15: Заказ еды и напитков", description: "Изучение необходимых фраз для заказа еды и напитков в корейских ресторанах." },
+  { title: "Урок 16: Транспорт и направления", description: "Изучение лексики, связанной с транспортом и как спрашивать о направлениях." },
+  { title: "Урок 17: Погода и сезоны", description: "Разговоры о погоде, сезонах и общие выражения, связанные с погодой." },
+  { title: "Урок 18: Шоппинг и торговля", description: "Как делать покупки и торговаться в корейских магазинах." },
+  { title: "Урок 19: Экстренные фразы", description: "Изучение важных фраз для экстренных ситуаций." },
+  { title: "Урок 20: Обзор и практика", description: "Обзор всех уроков и выполнение практических заданий." }
+]
+,
+ne: [
+  { title: "पाठ 1: परिचय", description: "कोरियाली भाषा को आधारभूत कुरा सिक्नुहोस्।" },
+  { title: "पाठ 2: हङ्गुल - कोरियाली वर्णमाला", description: "हङ्गुलको संरचना र ध्वनिहरू बुझ्नुहोस्।" },
+  { title: "पाठ 3: स्वर र व्यंजन", description: "कोरियाली वर्णमालाका 10 वटा स्वर र 14 वटा व्यंजनहरू सिक्नुहोस्।" },
+  { title: "पाठ 4: आधारभूत अक्षर लेख्न", description: "स्वर र व्यंजनहरूलाई जोडेर आधारभूत कोरियाली अक्षर लेख्न सिक्नुहोस्।" },
+  { title: "पाठ 5: कोरियाली संख्याहरू", description: "कोरियाली भाषामा दुईवटा संख्यात्मक प्रणाली छन्: स्वदेशी र सिनो-कोरियाली संख्याहरू।" },
+  { title: "पाठ 6: आधारभूत वाक्य संरचना", description: "कोरियाली भाषामा कर्ता-क्रिया- objekt (SOV) वाक्य संरचनालाई बुझ्नुहोस्।" },
+  { title: "पाठ 7: सामान्य अभिवादनहरू", description: "कोरियालीमा दैनिक कुराकानीका लागि आवश्यक अभिवादन र वाक्यांशहरू सिक्नुहोस्।" },
+  { title: "पाठ 8: परिचय र आत्मपरिचय", description: "आफ्नो परिचय दिन र अरूसँग नाम र पेशा सोध्न सिक्नुहोस्।" },
+  { title: "पाठ 9: परिवार र सम्बन्ध", description: "कोरियालीमा परिवारका सदस्य र सामान्य सम्बन्धहरूको शब्दावली सिक्नुहोस्।" },
+  { title: "पाठ 10: कोरियाली संस्कृति र प्रचलन", description: "कोरियाली संस्कृति, परंपरा र शिष्टाचारसँग परिचित हुनुहोस्।" },
+  { title: "पाठ 11: कोरियाली सर्वनामहरू", description: "कोरियालीमा व्यक्तिगत सर्वनामहरू प्रयोग गर्न सिक्नुहोस्।" },
+  { title: "पाठ 12: क्रिया र विशेषणहरू", description: "कोरियालीमा क्रिया र विशेषणहरूलाई कसरी परिवर्तन गर्ने भनेर बुझ्नुहोस्।" },
+  { title: "पाठ 13: रंग र रूपहरू", description: "कोरियालीमा रंग र रूपहरूका शब्दावली सिक्नुहोस्।" },
+  { title: "पाठ 14: समय र मिति", description: "समय, दिन, महिना र मिति भन्नको लागि कोरियाली सिक्नुहोस्।" },
+  { title: "पाठ 15: खाना र पेय पदार्थको अर्डर", description: "कोरियाली रेस्टुरेन्टमा खाना र पेय पदार्थ अर्डर गर्न आवश्यक वाक्यांशहरू सिक्नुहोस्।" },
+  { title: "पाठ 16: यातायात र दिशा", description: "यातायात र दिशा सम्बन्धी शब्दावली सिक्नुहोस्।" },
+  { title: "पाठ 17: मौसम र ऋतुई", description: "मौसम, ऋतुई र मौसमसँग सम्बन्धित सामान्य वाक्यांशहरू सिक्नुहोस्।" },
+  { title: "पाठ 18: किनमेल र मोलतोल", description: "कोरियाली बजारमा किनमेल गर्न र मोलतोल गर्न आवश्यक वाक्यांशहरू सिक्नुहोस्।" },
+  { title: "पाठ 19: आपतकालीन वाक्यांशहरू", description: "आपतकालीन अवस्थाहरूका लागि महत्त्वपूर्ण वाक्यांशहरू सिक्नुहोस्।" },
+  { title: "पाठ 20: पुनरावलोकन र अभ्यास", description: "सार्वभौम पुनरावलोकन र सबै पाठहरूको अभ्यास गर्नुहोस्।" }
+]
+,
+bn: [
+  { title: "বিভাগ 1: পরিচিতি", description: "কোরিয়ান ভাষার মৌলিক বিষয়গুলি শিখুন।" },
+  { title: "বিভাগ 2: হাঙ্গুল - কোরিয়ান অক্ষর", description: "হাঙ্গুলের গঠন এবং সুরগুলি বোঝুন।" },
+  { title: "বিভাগ 3: স্বর এবং ব্যঞ্জন", description: "কোরিয়ান অক্ষরে 10টি স্বর এবং 14টি ব্যঞ্জন শিখুন।" },
+  { title: "বিভাগ 4: মৌলিক সিলেবল লিখন", description: "স্বর এবং ব্যঞ্জন একত্রিত করে মৌলিক কোরিয়ান সিলেবল লিখতে শিখুন।" },
+  { title: "বিভাগ 5: কোরিয়ান সংখ্যা", description: "কোরিয়ান ভাষায় দুটি সংখ্যা ব্যবস্থা রয়েছে: স্থানীয় এবং সিনো-কোরিয়ান সংখ্যা।" },
+  { title: "বিভাগ 6: মৌলিক বাক্য গঠন", description: "কোরিয়ান ভাষায় বিষয়-ক্রিয়া-অবজেক্ট (SOV) বাক্য গঠন বুঝুন।" },
+  { title: "বিভাগ 7: সাধারণ অভিবাদন", description: "কোরিয়ানে দৈনন্দিন কথোপকথনে প্রয়োজনীয় অভিবাদন এবং বাক্যাংশ শিখুন।" },
+  { title: "বিভাগ 8: পরিচয় এবং আত্মপরিচয়", description: "নিজেকে পরিচয় করিয়ে দিতে এবং অন্যদের নাম এবং পেশা সম্পর্কে প্রশ্ন করতে শিখুন।" },
+  { title: "বিভাগ 9: পরিবার এবং সম্পর্ক", description: "কোরিয়ানে পরিবারের সদস্য এবং সম্পর্ক সম্পর্কিত শব্দভাণ্ডার শিখুন।" },
+  { title: "বিভাগ 10: কোরিয়ান সংস্কৃতি এবং রীতি", description: "কোরিয়ান সংস্কৃতি, রীতি এবং শিষ্টাচার সম্পর্কে পরিচিত হন।" },
+  { title: "বিভাগ 11: কোরিয়ান সর্বনাম", description: "কোরিয়ানে ব্যক্তিগত সর্বনামগুলি ব্যবহার করতে শিখুন।" },
+  { title: "বিভাগ 12: ক্রিয়া এবং বিশেষণ", description: "কোরিয়ান ভাষায় ক্রিয়া এবং বিশেষণগুলি কীভাবে রূপান্তরিত হয় তা বুঝুন।" },
+  { title: "বিভাগ 13: রং এবং আকার", description: "কোরিয়ানে রং এবং আকার সম্পর্কিত শব্দভাণ্ডার শিখুন।" },
+  { title: "বিভাগ 14: সময় এবং তারিখ", description: "সময়, দিন, মাস এবং তারিখ কোরিয়ানে কীভাবে বলা হয় শিখুন।" },
+  { title: "বিভাগ 15: খাবার এবং পানীয় আদেশ", description: "কোরিয়ান রেস্টুরেন্টে খাবার এবং পানীয় আদেশ দিতে প্রয়োজনীয় বাক্যাংশ শিখুন।" },
+  { title: "বিভাগ 16: পরিবহন এবং নির্দেশনা", description: "পরিবহন এবং দিক নির্দেশনা সম্পর্কিত শব্দভাণ্ডার শিখুন।" },
+  { title: "বিভাগ 17: আবহাওয়া এবং ঋতু", description: "আবহাওয়া, ঋতু এবং আবহাওয়া সম্পর্কিত সাধারণ বাক্যাংশ শিখুন।" },
+  { title: "বিভাগ 18: কেনাকাটা এবং দরদাম", description: "কোরিয়ান বাজারে কেনাকাটা এবং দরদাম করতে প্রয়োজনীয় বাক্যাংশ শিখুন।" },
+  { title: "বিভাগ 19: জরুরি বাক্যাংশ", description: "জরুরি পরিস্থিতির জন্য গুরুত্বপূর্ণ বাক্যাংশ শিখুন।" },
+  { title: "বিভাগ 20: পর্যালোচনা এবং অনুশীলন", description: "সব পাঠের সারসংক্ষেপ এবং অনুশীলন সম্পাদন করুন।" }
+]
+,
+th: [
+  { title: "บทที่ 1: แนะนำ", description: "เรียนรู้พื้นฐานของภาษาเกาหลี" },
+  { title: "บทที่ 2: ฮันกึล - อักษรเกาหลี", description: "เข้าใจโครงสร้างและเสียงของฮันกึล" },
+  { title: "บทที่ 3: สระและพยัญชนะ", description: "เรียนรู้สระ 10 ตัวและพยัญชนะ 14 ตัวในภาษาเกาหลี" },
+  { title: "บทที่ 4: การเขียนพยางค์พื้นฐาน", description: "วิธีการผสมสระและพยัญชนะเพื่อสร้างพยางค์ภาษาเกาหลีพื้นฐาน" },
+  { title: "บทที่ 5: ตัวเลขในภาษาเกาหลี", description: "เรียนรู้ระบบตัวเลขสองระบบในภาษาเกาหลี: ตัวเลขพื้นเมืองและตัวเลขซิโน-เกาหลี" },
+  { title: "บทที่ 6: โครงสร้างประโยคพื้นฐาน", description: "เข้าใจโครงสร้างประโยคแบบหัวข้อ-กรรม-กริยา (SOV) ในภาษาเกาหลี" },
+  { title: "บทที่ 7: การทักทายทั่วไป", description: "เรียนรู้คำทักทายและวลีที่ใช้ในชีวิตประจำวัน" },
+  { title: "บทที่ 8: การแนะนำตัวเอง", description: "เรียนรู้วิธีการแนะนำตัวเองและถามชื่อและอาชีพของผู้อื่น" },
+  { title: "บทที่ 9: ครอบครัวและความสัมพันธ์", description: "เรียนรู้คำศัพท์เกี่ยวกับสมาชิกในครอบครัวและความสัมพันธ์ทั่วไป" },
+  { title: "บทที่ 10: วัฒนธรรมและขนบธรรมเนียมของเกาหลี", description: "ทำความรู้จักกับวัฒนธรรม ขนบธรรมเนียม และมารยาทของเกาหลี" },
+  { title: "บทที่ 11: สรรพนามในภาษาเกาหลี", description: "เรียนรู้การใช้สรรพนามบุรุษในภาษาเกาหลี" },
+  { title: "บทที่ 12: กริยาและคำคุณศัพท์", description: "เข้าใจวิธีการผันกริยาและคำคุณศัพท์ในภาษาเกาหลี" },
+  { title: "บทที่ 13: สีและรูปร่าง", description: "เรียนรู้คำศัพท์เกี่ยวกับสีและรูปร่างในภาษาเกาหลี" },
+  { title: "บทที่ 14: เวลาและวันที่", description: "เรียนรู้การบอกเวลา วัน เดือน และวันที่ในภาษาเกาหลี" },
+  { title: "บทที่ 15: การสั่งอาหารและเครื่องดื่ม", description: "เรียนรู้วลีที่จำเป็นในการสั่งอาหารและเครื่องดื่มในร้านอาหารเกาหลี" },
+  { title: "บทที่ 16: การเดินทางและทิศทาง", description: "เรียนรู้คำศัพท์เกี่ยวกับการเดินทางและทิศทาง" },
+  { title: "บทที่ 17: อากาศและฤดูกาล", description: "เรียนรู้คำศัพท์เกี่ยวกับสภาพอากาศและฤดูกาล" },
+  { title: "บทที่ 18: การช็อปปิ้งและการต่อรองราคา", description: "เรียนรู้วลีที่จำเป็นในการช็อปปิ้งและต่อรองราคาในตลาดเกาหลี" },
+  { title: "บทที่ 19: วลีฉุกเฉิน", description: "เรียนรู้วลีที่จำเป็นในสถานการณ์ฉุกเฉิน" },
+  { title: "บทที่ 20: การทบทวนและฝึกฝน", description: "ทบทวนเนื้อหาทั้งหมดและฝึกฝน" }
+]
+,
+vi: [
+  { title: "Bài 1: Giới thiệu", description: "Học các khái niệm cơ bản về tiếng Hàn." },
+  { title: "Bài 2: Hangeul - Chữ cái Hàn Quốc", description: "Hiểu cấu trúc và âm thanh của Hangeul." },
+  { title: "Bài 3: Nguyên âm và phụ âm", description: "Học 10 nguyên âm và 14 phụ âm trong tiếng Hàn." },
+  { title: "Bài 4: Viết âm tiết cơ bản", description: "Học cách kết hợp nguyên âm và phụ âm để viết âm tiết cơ bản trong tiếng Hàn." },
+  { title: "Bài 5: Số trong tiếng Hàn", description: "Học hai hệ thống số trong tiếng Hàn: số bản địa và số Sino-Hàn." },
+  { title: "Bài 6: Cấu trúc câu cơ bản", description: "Hiểu cấu trúc câu chủ ngữ - động từ - tân ngữ (SOV) trong tiếng Hàn." },
+  { title: "Bài 7: Các câu chào hỏi thông dụng", description: "Học các câu chào hỏi và cụm từ cơ bản trong giao tiếp hàng ngày." },
+  { title: "Bài 8: Giới thiệu bản thân", description: "Học cách giới thiệu bản thân và hỏi tên tuổi, nghề nghiệp của người khác." },
+  { title: "Bài 9: Gia đình và các mối quan hệ", description: "Học từ vựng về các thành viên trong gia đình và các mối quan hệ thông dụng." },
+  { title: "Bài 10: Văn hóa và phong tục Hàn Quốc", description: "Tìm hiểu về văn hóa, phong tục và các phép tắc trong văn hóa Hàn Quốc." },
+  { title: "Bài 11: Đại từ nhân xưng", description: "Học cách sử dụng các đại từ nhân xưng trong tiếng Hàn." },
+  { title: "Bài 12: Động từ và tính từ", description: "Hiểu cách biến đổi động từ và tính từ trong tiếng Hàn." },
+  { title: "Bài 13: Màu sắc và hình dạng", description: "Học từ vựng về màu sắc và hình dạng trong tiếng Hàn." },
+  { title: "Bài 14: Thời gian và ngày tháng", description: "Học cách nói về thời gian, ngày, tháng trong tiếng Hàn." },
+  { title: "Bài 15: Đặt món ăn và đồ uống", description: "Học các câu cần thiết để đặt món ăn và đồ uống trong nhà hàng Hàn Quốc." },
+  { title: "Bài 16: Giao thông và chỉ đường", description: "Học từ vựng về giao thông và chỉ đường." },
+  { title: "Bài 17: Thời tiết và mùa", description: "Học các câu giao tiếp về thời tiết và các mùa trong tiếng Hàn." },
+  { title: "Bài 18: Mua sắm và mặc cả", description: "Học các câu cần thiết khi mua sắm và mặc cả trong chợ Hàn Quốc." },
+  { title: "Bài 19: Câu khẩn cấp", description: "Học các câu giao tiếp trong tình huống khẩn cấp." },
+  { title: "Bài 20: Ôn tập và luyện tập", description: "Ôn tập các bài học và luyện tập các kỹ năng đã học." }
+]
+,
+     si: [
+  { title: "පන්ති 1: හැඳින්වීම", description: "කෝරියානු භාෂාවේ මූලික කරුණු ඉගෙන ගන්න." },
+  { title: "පන්ති 2: හංගේල් - කෝරියානු අකුරු", description: "හංගේල් අකුරු සහ ශබ්දය මනාව අවබෝධ කරගන්න." },
+  { title: "පන්ති 3: සවර සහ ව්‍යාංජන", description: "කෝරියානු භාෂාවේ 10 සවර සහ 14 ව්‍යාංජන ඉගෙන ගන්න." },
+  { title: "පන්ති 4: මූලික සම්ප්‍රේෂණ ලිවීම", description: "සවර සහ ව්‍යාංජන එකතු කර කෝරියානු භාෂාවේ මූලික සම්ප්‍රේෂණ ලිවීම ඉගෙන ගන්න." },
+  { title: "පන්ති 5: කෝරියානු ගණන", description: "කෝරියානු භාෂාවෙහි ද්විත්ව ගණන පද්ධති වාර්තා කරයි: ස්වාභාවික සහ සීනෝ-කෝරියානු ගණන." },
+  { title: "පන්ති 6: මූලික වාක්‍ය ව්‍යුහය", description: "කෝරියානු භාෂාවේ විෂය-ක්‍රියාව-කාර්යය (SOV) වාක්‍ය ව්‍යුහය අවබෝධ කරගන්න." },
+  { title: "පන්ති 7: පොදු ආදර පවිරුම්", description: "දිනපතා සංවාද සඳහා අවශ්‍ය ආදර පවිරුම් සහ වාක්‍යांश ඉගෙන ගන්න." },
+  { title: "පන්ති 8: හැඳින්වීම සහ ආත්ම-හැඳින්වීම", description: "ඔබගේ හැඳින්වීම කරන්න සහ අනෙක් අයගේ නම සහ රැකියාව ප්‍රශ්න කරන්න." },
+  { title: "පන්ති 9: පවුල සහ සම්බන්ධතා", description: "කෝරියානු භාෂාවෙහි පවුලේ සාමාජිකයන් සහ පොදු සම්බන්ධතා වචන කොටසක් ඉගෙන ගන්න." },
+  { title: "පන්ති 10: කෝරියානු සංස්කෘතිය සහ ආචාර", description: "කෝරියානු සංස්කෘතිය, ආචාර සහ වාසනාවෙන් ප්‍රතිපත්තීන් පිළිබඳ අවබෝධය." },
+  { title: "පන්ති 11: කෝරියානු සෙරපනම්", description: "කෝරියානු භාෂාවෙහි පෞද්ගලික සෙරපනම් භාවිතා කරන්නේ කෙසේදැයි ඉගෙන ගන්න." },
+  { title: "පන්ති 12: ක්‍රියා සහ විශේෂණ", description: "කෝරියානු භාෂාවේ ක්‍රියා සහ විශේෂණ කෙසේ වෙනස් වන බව අවබෝධ කරගන්න." },
+  { title: "පන්ති 13: වර්ණ සහ හැඩය", description: "කෝරියානු භාෂාවේ වර්ණ සහ හැඩය වචන කොටසක් ඉගෙන ගන්න." },
+  { title: "පන්ති 14: කාලය සහ දිනය", description: "කාලය, දින, මාස සහ දිනය කෝරියානු භාෂාවෙහි කියන ආකාරය ඉගෙන ගන්න." },
+  { title: "පන්ති 15: ආහාර සහ පානයන් විකිරණය", description: "කෝරියානු ආහාර වේලාවන් සහ පානයන් රෙස්ටුරන්ට්වල විකිරණය කිරීමට අවශ්‍ය වාක්‍යांश ඉගෙන ගන්න." },
+  { title: "පන්ති 16: ගමනාගමන සහ දෙස", description: "ගමනාගමන සහ දෙස පිළිබඳ වචන කොටසක් ඉගෙන ගන්න." },
+  { title: "පන්ති 17: කාලගුණ සහ උණුසුම්", description: "කාලගුණය, උණුසුම් සහ කාලගුණ පදනම" },
+  { title: "පන්ති 18: මිලදී ගැනීම සහ මිලට ගැනීම", description: "කෝරියානු මාර්කට මිලදී ගැනීම සහ මිලට ගැනීම" },
+  { title: "පන්ති 19: අප්‍රසාද", description: "ඉක්මනින් ප්‍රථම පද්ධතිය ගැන ඉගෙන ගන්න" },
+  { title: "පන්ති 20: සමාර්ථය සහ සැලැස්වීම", description: "සෑම පාඩමකම සාරාංශයක් ඉගෙන ගන්න." }
+]
+
+    };
+
+    let currentLanguage = "en"; // Начальный язык
+
+    function changeLanguage() {
+      currentLanguage = document.getElementById("language-select").value;
+      loadLessons();
+    }
+
+    function loadLessons() {
+      const lessonsContainer = document.getElementById("lessons");
+      lessonsContainer.innerHTML = ""; // Очистить контейнер перед загрузкой новых уроков
+
+      lessons[currentLanguage].forEach(lesson => {
+        const lessonElement = document.createElement("div");
+        lessonElement.classList.add("lesson");
+
+        // const lessonImage = document.createElement("img");
+        // lessonImage.src = "https://via.placeholder.com/400x200"; // Здесь вы можете вставить реальный путь к изображению
+        // lessonElement.appendChild(lessonImage);
+
+        const lessonTitle = document.createElement("h3");
+        lessonTitle.textContent = lesson.title;
+        lessonElement.appendChild(lessonTitle);
+
+        const lessonDescription = document.createElement("p");
+        lessonDescription.textContent = lesson.description;
+        lessonElement.appendChild(lessonDescription);
+
+        lessonsContainer.appendChild(lessonElement);
+      });
+    }
+
+    window.onload = loadLessons; // Загрузить уроки при первой загрузке страницы
+  </script>
+</body>
+</html>
